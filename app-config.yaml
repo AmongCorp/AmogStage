@@ -70,8 +70,8 @@ auth:
     guest: {}
     github:
       development:
-        clientId: ${AUTH_GITHUB_CLIENT_ID}
-        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        clientId: Ov23liwcDnGhkG1v7vio
+        clientSecret: f90441991f0d27aa8b9dabbb0a590aec6a7e8c75
         signIn:
           resolvers:
             - resolver: usernameMatchingUserEntityName
