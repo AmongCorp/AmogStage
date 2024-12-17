@@ -19,6 +19,17 @@ spec:
   system: examples
   providesApis: [example-grpc-api]
 ---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: infos-backstage
+  annotations:
+    backstage.io/techdocs-ref: "url:https://github.com/Mazlai/infos-backstage"
+spec:
+  type: service
+  owner: guests
+  lifecycle: experimental
+---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
 apiVersion: backstage.io/v1alpha1
 kind: API

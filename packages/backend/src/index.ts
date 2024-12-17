@@ -52,4 +52,7 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
+// readme
+backend.add(import('@axis-backstage/plugin-readme-backend'));
+
 backend.start();
