@@ -43,6 +43,14 @@ import {
   useApi, 
 } from '@backstage/core-plugin-api';
 
+/* custom things */
+import { HomepageCompositionRoot } from '@backstage/plugin-home';
+import { HomePage } from './components/home/HomePage';
+import { myTheme } from './components/theme/myTheme';
+import { FestiveFun } from 'backstage-plugin-festive-fun';
+import { UnifiedThemeProvider } from '@backstage/theme';
+import LightIcon from '@material-ui/icons/WbSunny';
+
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -94,11 +102,22 @@ const app = createApp({
       );
     },
   },
+  themes: [{
+    id: 'my-theme',
+    title: 'My Custom Theme',
+    variant: 'light',
+    icon: <LightIcon />,
+    Provider: ({ children }) => (
+      <UnifiedThemeProvider theme={myTheme} children={children} />
+    ),
+  }]
 });
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<Navigate to="catalog" />} />
+    <Route path="/" element={<HomepageCompositionRoot />}>
+      <HomePage />
+    </Route>
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
@@ -139,6 +158,9 @@ export default app.createRoot(
     <OAuthRequestDialog />
     <AppRouter>
       <Root>{routes}</Root>
+      <FestiveFun 
+        festivity='fall'
+      />
     </AppRouter>
   </>,
 );

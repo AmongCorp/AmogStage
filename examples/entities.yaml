@@ -12,6 +12,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
+  annotations:
+    backstage.io/source-location: "url:https://github.com/AmongCorp/AmogStage/blob/mazlai/examples/README.md"
 spec:
   type: website
   lifecycle: experimental
