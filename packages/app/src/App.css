@@ -1,0 +1,21 @@
+* {
+    scrollbar-color: #343b58 #d5d6db;
+}
+
+a:has(> .repo-card) {
+    flex: 1;
+    min-width: 325px;
+    max-width: 450px;
+}
+.repo-card {
+    height: 100%;
+}
+.repo-card:hover {
+    transform: scale(1.025);
+    filter: brightness(1.05);
+    -webkit-filter: brightness(1.05);
+}
+
+.text-muted {
+    color: #5e5e5e;
+}

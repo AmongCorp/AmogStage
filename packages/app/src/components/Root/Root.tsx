@@ -4,6 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+import BookIcon from '@mui/icons-material/Book';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -31,6 +32,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
+import Cookies from 'universal-cookie';
+import { Constants } from '../../constants';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -59,6 +62,9 @@ const SidebarLogo = () => {
     </div>
   );
 };
+
+const cookie = new Cookies();
+const username = cookie.get(Constants.GITHUB_USERNAME_COOKIE);
 
 export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
@@ -116,6 +122,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           pluralTitle="My Groups"
           icon={GroupIcon}
         />
+        { username ? <SidebarItem icon={BookIcon} to="my-repos" text="My repos" /> : null }
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
