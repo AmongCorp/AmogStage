@@ -6,7 +6,7 @@
 3. [Installation de Backstage](#installation-de-backstage)
 4. [Création d'un template](#création-dun-template)
 5. [Ajout d'un service lié à un repo](#ajout-dun-service-lié-à-un-repo)
-6. [Utilisation du plugin README](#utilisation-du-plugin-readme)
+6. [Plugins utilisés](#plugins-utilisés)
 
 ---
 
@@ -15,9 +15,7 @@
 Ce projet met en place un environnement **Backstage** qui inclut :
 - La **création d'un template** (non fonctionnel à l'heure actuelle).
 - L'ajout d'un **service lié à un dépôt de test**.
-- L'intégration du plugin **README** pour afficher un fichier `README.md` dans l'interface Backstage.
-
-Ce projet peut servir de base pour tester et explorer les fonctionnalités principales de Backstage.
+- L'intégration de différents plugins (essentiellement axé front-end) 
 
 ---
 
@@ -55,10 +53,30 @@ yarn install
 3. **Démarrer le projet :**
 
 ```bash
-yarn start
+yarn dev
 ```
 
-4. **Accéder à l'interface Backstage :** [http://localhost:3000](http://localhost:3000)
+Et vous accederez à l'interface Backstage sur `http://localhost:3000`.
+
+### 📁 Connexion à GitHub
+
+Si vous souhaitez vous connecter à votre compte GitHub, vous devrez créer un fichier à la racine du projet nommé `app-config.local.yaml` et y ajouter les lignes suivantes :
+
+```yaml
+auth:
+  environment: development
+  providers:
+    guest: {}
+    github:
+      development:
+        clientId: YOUR_CLIENT_ID
+        clientSecret: YOUR_CLIENT_SECRET
+        signIn:
+          resolvers:
+            - resolver: usernameMatchingUserEntityName
+```
+
+Pour plus d'informations, consultez la page suivante : [GitHub Auth Provider](https://backstage.io/docs/getting-started/config/authentication).
 
 ---
 
@@ -121,11 +139,37 @@ spec:
 
 ---
 
-## 📖 **Utilisation du plugin README**
+## 📖 **Plugins utilisés**
+
+### 📜 **Plugin README**
 
 Le plugin README permet d'afficher le contenu d'un fichier `README.md` dans l'interface Backstage.
-Il se situe dans le dossier `examples/template/content` et est activé par défaut.
+
+![alt text](image.png)
+
+Vous pouvez l'apercevoir depuis le composant créé par défaut de Backstage.
+
+### 📦 **Plugin TechDocs**
+
+Le plugin TechDocs permet d'afficher la documentation d'un projet dans l'interface Backstage.
+Il est assez similaire à README mais permet de gérer des fichiers plus complexes.
+
+A noter que pour le faire fonctionner, vous aurez besoin d'exécuter les commandes suivantes :
+
+```bash
+pip install mkdocs
+pip install mkdocs-material
+pip install mkdocs-material-extensions
+pip install mkdocs-techdocs-core
+```
+
+Vous pouvez apercevoir le rendu depuis le deuxième composant nommé `infos-backstage`.
+
+### 📊 **Plugin Festive Fun**
+
+Le plugin Festive Fun permet d'afficher des animations de tout genre dans l'interface Backstage.
+Vous pouvez le voir en action depuis n'importe quelle page de Backstage.
 
 --- 
 
-📧 **Pour toute question ou suggestion** : *contactez-vous directement via ce repo !*
+📧 **Pour toute question ou suggestion** : *contactez-nous directement via ce repo !*

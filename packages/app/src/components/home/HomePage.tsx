@@ -2,8 +2,8 @@ import React from 'react';
 import { Content, InfoCard } from '@backstage/core-components';
 
 const favoriteProjects = [
-  { name: 'Project A', link: '/catalog/default/component/example-website' },
-  { name: 'Project B', link: '/catalog/default/component/project-b' },
+  { name: 'Example - Backstage', link: '/catalog/default/component/example-website' },
+  { name: 'Repository from Node.js template', link: '/catalog/default/component/infos-backstage' },
 ];
 
 const serviceStatuses = [
