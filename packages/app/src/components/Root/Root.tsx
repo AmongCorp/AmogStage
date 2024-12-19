@@ -4,6 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+import BookIcon from '@mui/icons-material/Book';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -22,11 +23,17 @@ import {
   SidebarSpace,
   useSidebarOpenState,
   Link,
+  SidebarSubmenu,
+  SidebarSubmenuItem,
 } from '@backstage/core-components';
+
+import { useApp } from '@backstage/core-plugin-api';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
+import Cookies from 'universal-cookie';
+import { Constants } from '../../constants';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -56,6 +63,9 @@ const SidebarLogo = () => {
   );
 };
 
+const cookie = new Cookies();
+const username = cookie.get(Constants.GITHUB_USERNAME_COOKIE);
+
 export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
     <Sidebar>
@@ -66,12 +76,53 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+        <SidebarItem icon={HomeIcon} to="/" text="Home">
+        <SidebarSubmenu title="Catalog">
+          <SidebarSubmenuItem
+            title="Domains"
+            to="catalog?filters[kind]=domain"
+            icon={useApp().getSystemIcon('kind:domain')}
+          />
+          <SidebarSubmenuItem
+            title="Systems"
+            to="catalog?filters[kind]=system"
+            icon={useApp().getSystemIcon('kind:system')}
+          />
+          <SidebarSubmenuItem
+            title="Components"
+            to="catalog?filters[kind]=component"
+            icon={useApp().getSystemIcon('kind:component')}
+          />
+          <SidebarSubmenuItem
+            title="APIs"
+            to="catalog?filters[kind]=api"
+            icon={useApp().getSystemIcon('kind:api')}
+          />
+          <SidebarDivider />
+          <SidebarSubmenuItem
+            title="Resources"
+            to="catalog?filters[kind]=resource"
+            icon={useApp().getSystemIcon('kind:resource')}
+          />
+          <SidebarDivider />
+          <SidebarSubmenuItem
+            title="Groups"
+            to="catalog?filters[kind]=group"
+            icon={useApp().getSystemIcon('kind:group')}
+          />
+          <SidebarSubmenuItem
+            title="Users"
+            to="catalog?filters[kind]=user"
+            icon={useApp().getSystemIcon('kind:user')}
+          />
+        </SidebarSubmenu>
+      </SidebarItem>
         <MyGroupsSidebarItem
           singularTitle="My Group"
           pluralTitle="My Groups"
           icon={GroupIcon}
         />
+        { username ? <SidebarItem icon={BookIcon} to="my-repos" text="My repos" /> : null }
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />

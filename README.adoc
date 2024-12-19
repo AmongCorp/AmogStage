@@ -1,0 +1,39 @@
+= AmogStage
+:toc: macro
+:toclevels: 3
+:sectnums:
+
+AmogStage is a https://backstage.io[Backstage] scaffolded web application.
+
+toc::[]
+
+== Local deployment
+Follow these steps to locally run the project:
+
+* Locally clone this repo on your device.
+* If you don't have it yet, install yarn by running the following command in a terminal:
++
+[source,sh]
+----
+npm install --global yarn
+----
++
+Install https://nodejs.org/en[NodeJS] if `npm` is missing on your device.
+* In the cloned repo root folder, install dependencies by running the following command:
++
+[source,sh]
+----
+yarn install
+----
+* Finally, locally launch the application by running the following command:
++
+[source,sh]
+----
+yarn dev
+----
+
+You'll be able to access it at http://localhost:3000.
+
+== Features
+
+*_TODO_*
